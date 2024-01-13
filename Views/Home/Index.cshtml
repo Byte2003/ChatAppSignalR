@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <input type="text" class="form-control" id="messageUser">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Message</label>
+        <input type="text" class="form-control" id="messageInput">
+    </div>
+    <input type="button" id="sendButton" class="btn btn-primary" value="Send">
+    <hr />
+    <div class="box-chat">
+        <p>Box chat:</p>
+        <div>
+            <ul class="box-chat">
+                @foreach(var message in ChatAppSignalR.Hubs.ChatHub.listMessage)
+            {
+                <li>@message.UserName: @message.Message</li>
+            }
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="~/js/signalr.js"></script>
+<script src="~/js/chat.js"></script>
